@@ -1,13 +1,484 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<title>Ejemplo de etiqueta H1</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PARASENDEROS - Checklist de Viaje</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="tire" patternUnits="userSpaceOnUse" width="10" height="10"><path d="M0 0h10v10H0z" fill="none"/><path d="M2 2l6 6M8 2l-6 6" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23tire)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0% { transform: translateX(-50px) translateY(-50px) rotate(0deg); }
+            100% { transform: translateX(-50px) translateY(-50px) rotate(360deg); }
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .progress-section {
+            padding: 30px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .progress-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 2px solid #e9ecef;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .progress-text {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .progress-percentage {
+            font-size: 2em;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 15px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b35 0%, #f7931e 100%);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            box-shadow: 0 2px 4px rgba(255,107,53,0.3);
+        }
+
+        .controls {
+            padding: 20px 30px;
+            display: flex;
+            justify-content: center;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .reset-btn {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220,53,69,0.3);
+        }
+
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220,53,69,0.4);
+        }
+
+        .checklist-section {
+            padding: 30px;
+        }
+
+        .category {
+            margin-bottom: 30px;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border: 1px solid #e9ecef;
+        }
+
+        .category-header {
+            background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+            color: white;
+            padding: 15px 20px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        .category-items {
+            padding: 20px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f8f9fa;
+            transition: all 0.3s ease;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item:hover {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding-left: 10px;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            accent-color: #ff6b35;
+            cursor: pointer;
+            transform: scale(1.2);
+        }
+
+        .checklist-item label {
+            flex: 1;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #495057;
+        }
+
+        .checklist-item input[type="checkbox"]:checked + label {
+            text-decoration: line-through;
+            opacity: 0.7;
+            color: #6c757d;
+        }
+
+        .motorcycle-icon {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            font-size: 3em;
+            animation: bounce 2s infinite;
+            opacity: 0.7;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .progress-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .checklist-section {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>🏍️ PARASENDEROS</h1>
+            <p>Checklist para Viajes en Moto</p>
+        </div>
 
-<h1>Este es el título principal de la página</h1>
+        <div class="progress-section">
+            <div class="progress-container">
+                <div class="progress-info">
+                    <div class="progress-text">Progreso del Checklist</div>
+                    <div class="progress-percentage" id="progressPercentage">0%</div>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+            </div>
+        </div>
 
-<p>Este es el contenido de la página.</p>
+        <div class="controls">
+            <button class="reset-btn" onclick="resetChecklist()">🔄 Reiniciar Todo</button>
+        </div>
 
+        <div class="checklist-section">
+            <div class="category">
+                <div class="category-header">🔧 Revisión de la Moto</div>
+                <div class="category-items">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="oil" onchange="updateProgress()">
+                        <label for="oil">Revisar nivel de aceite</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="tires" onchange="updateProgress()">
+                        <label for="tires">Presión y estado de neumáticos</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="brakes" onchange="updateProgress()">
+                        <label for="brakes">Funcionamiento de frenos</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="lights" onchange="updateProgress()">
+                        <label for="lights">Luces (delanteras, traseras, direccionales)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="chain" onchange="updateProgress()">
+                        <label for="chain">Tensión y lubricación de cadena</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="fuel" onchange="updateProgress()">
+                        <label for="fuel">Tanque de combustible lleno</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">🎒 Equipaje y Herramientas</div>
+                <div class="category-items">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="toolkit" onchange="updateProgress()">
+                        <label for="toolkit">Kit de herramientas básicas</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="spare" onchange="updateProgress()">
+                        <label for="spare">Repuestos básicos (fusibles, bombillas)</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="tire-repair" onchange="updateProgress()">
+                        <label for="tire-repair">Kit de reparación de neumáticos</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="luggage" onchange="updateProgress()">
+                        <label for="luggage">Equipaje bien asegurado</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="cables" onchange="updateProgress()">
+                        <label for="cables">Cables de arranque</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">🦺 Equipamiento Personal</div>
+                <div class="category-items">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="helmet" onchange="updateProgress()">
+                        <label for="helmet">Casco homologado</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="jacket" onchange="updateProgress()">
+                        <label for="jacket">Chaqueta protectora</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="gloves" onchange="updateProgress()">
+                        <label for="gloves">Guantes</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="boots" onchange="updateProgress()">
+                        <label for="boots">Botas de protección</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="pants" onchange="updateProgress()">
+                        <label for="pants">Pantalones protectores</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="rain-gear" onchange="updateProgress()">
+                        <label for="rain-gear">Equipo para lluvia</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">📱 Tecnología y Navegación</div>
+                <div class="category-items">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="gps" onchange="updateProgress()">
+                        <label for="gps">GPS o navegación en móvil</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="phone-charger" onchange="updateProgress()">
+                        <label for="phone-charger">Cargador de móvil</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="power-bank" onchange="updateProgress()">
+                        <label for="power-bank">Batería externa</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="camera" onchange="updateProgress()">
+                        <label for="camera">Cámara o GoPro</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">📋 Documentación</div>
+                <div class="category-items">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="license" onchange="updateProgress()">
+                        <label for="license">Licencia de conducir</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="registration" onchange="updateProgress()">
+                        <label for="registration">Tarjeta de circulación</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="insurance" onchange="updateProgress()">
+                        <label for="insurance">Póliza de seguro</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="id" onchange="updateProgress()">
+                        <label for="id">Identificación personal</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="emergency" onchange="updateProgress()">
+                        <label for="emergency">Contactos de emergencia</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category">
+                <div class="category-header">🏥 Primeros Auxilios y Salud</div>
+                <div class="category-items">
+                    <div class="checklist-item">
+                        <input type="checkbox" id="first-aid" onchange="updateProgress()">
+                        <label for="first-aid">Kit de primeros auxilios</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="medications" onchange="updateProgress()">
+                        <label for="medications">Medicamentos personales</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="sunscreen" onchange="updateProgress()">
+                        <label for="sunscreen">Protector solar</label>
+                    </div>
+                    <div class="checklist-item">
+                        <input type="checkbox" id="water" onchange="updateProgress()">
+                        <label for="water">Botella de agua</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="motorcycle-icon">🏍️</div>
+
+    <script>
+        // Función para cargar el estado guardado
+        function loadChecklistState() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                const saved = localStorage.getItem(checkbox.id);
+                if (saved === 'true') {
+                    checkbox.checked = true;
+                }
+            });
+            updateProgress();
+        }
+
+        // Función para guardar el estado
+        function saveCheckboxState(checkboxId, isChecked) {
+            localStorage.setItem(checkboxId, isChecked);
+        }
+
+        // Función para actualizar el progreso
+        function updateProgress() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            const totalItems = checkboxes.length;
+            const checkedItems = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+            
+            const percentage = Math.round((checkedItems / totalItems) * 100);
+            
+            document.getElementById('progressPercentage').textContent = percentage + '%';
+            document.getElementById('progressFill').style.width = percentage + '%';
+
+            // Guardar el estado del checkbox que cambió
+            event.target && saveCheckboxState(event.target.id, event.target.checked);
+        }
+
+        // Función para reiniciar todo el checklist
+        function resetChecklist() {
+            if (confirm('¿Estás seguro de que quieres reiniciar todo el checklist?')) {
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                    localStorage.removeItem(checkbox.id);
+                });
+                updateProgress();
+            }
+        }
+
+        // Cargar el estado al iniciar la página
+        document.addEventListener('DOMContentLoaded', loadChecklistState);
+    </script>
 </body>
 </html>
