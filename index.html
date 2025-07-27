@@ -60,11 +60,44 @@
         }
 
         .header p {
+
             font-size: 18px;
             color: var(--accent);
             font-weight: 500;
         }
 
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .tab-button {
+            background: var(--muted);
+            color: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: 8px 8px 0 0;
+            padding: 12px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            outline: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+        }
+
+        .tab-button.active {
+            background: var(--secondary);
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+            z-index: 2;
+        }
+
+        .tab-button:hover:not(.active) {
+            background: var(--highlight);
+            color: var(--primary);
         }
 
         .tab-button.active {
@@ -297,10 +330,12 @@
     <div class="container">
         <div class="header">
             <h1>AVENTURA EN MOTO</h1>
-            <p>Checklist para ruta trail de un dia</p>
+            <p>Checklist para ruta trail</p>
         </div>
 
         <div class="tabs">
+            <button class="tab-button active" id="tab-dia" onclick="showTab('dia')">Viaje de un día</button>
+            <button class="tab-button" id="tab-dosdias" onclick="showTab('dosdias')">Viaje de dos días</button>
         </div>
 
         <div class="progress-section">
@@ -317,8 +352,8 @@
             <button class="reset-btn" onclick="resetChecklist()">Reiniciar Checklist</button>
         </div>
 
-        <!-- Checklist -->
-        <div id="checklist" class="tab-content active">
+        <!-- Checklist Viaje de un día -->
+        <div id="checklist-dia" class="tab-content active">
             <div class="checklist-grid">
                 <div class="category">
                     <div class="category-header">
@@ -508,24 +543,161 @@
         <div class="footer">
             Viaja seguro, viaja preparado.
         </div>
+
+        <!-- Checklist Viaje de dos días -->
+        <div id="checklist-dosdias" class="tab-content">
+            <div class="checklist-grid">
+                <div class="category">
+                    <div class="category-header">
+                        <span class="category-icon">⛺</span>
+                        <span>Camping y Pernocte</span>
+                    </div>
+                    <div class="category-items">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="tent">
+                            <label for="tent">Carpa (tienda de campaña)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="sleeping-bag">
+                            <label for="sleeping-bag">Sleeping bag (bolsa de dormir)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="mat">
+                            <label for="mat">Colchoneta o aislante</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="pillow">
+                            <label for="pillow">Almohada pequeña</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="headlamp">
+                            <label for="headlamp">Linterna o frontal</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="batteries">
+                            <label for="batteries">Baterías extra para linterna</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <div class="category-header">
+                        <span class="category-icon">🧳</span>
+                        <span>Ropa y Accesorios</span>
+                    </div>
+                    <div class="category-items">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="change-clothes">
+                            <label for="change-clothes">Ropa de cambio (camiseta, ropa interior, calcetines)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="warm-clothes">
+                            <label for="warm-clothes">Ropa abrigada (polar, chaqueta extra)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="towel">
+                            <label for="towel">Toalla pequeña</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="sandals">
+                            <label for="sandals">Sandalias o calzado adicional</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <div class="category-header">
+                        <span class="category-icon">🍳</span>
+                        <span>Alimentación y Cocina</span>
+                    </div>
+                    <div class="category-items">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="stove">
+                            <label for="stove">Cocinilla portátil y gas</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="pot">
+                            <label for="pot">Olla o sartén pequeño</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="utensils">
+                            <label for="utensils">Cubiertos y vaso</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="food-extra">
+                            <label for="food-extra">Comida adicional (desayuno/cena)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="water-extra">
+                            <label for="water-extra">Agua extra</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="category">
+                    <div class="category-header">
+                        <span class="category-icon">⛽</span>
+                        <span>Extras para la Moto</span>
+                    </div>
+                    <div class="category-items">
+                        <div class="checklist-item">
+                            <input type="checkbox" id="fuel-extra">
+                            <label for="fuel-extra">Combustible extra (bidón seguro)</label>
+                        </div>
+                        <div class="checklist-item">
+                            <input type="checkbox" id="spare-parts">
+                            <label for="spare-parts">Repuestos básicos (filtros, bujía, fusibles)</label>
+                        </div>
+                    </div>
+                </div>
+                <!-- Reutilizar checklist de un día -->
+                <div class="category">
+                    <div class="category-header">
+                        <span class="category-icon">🔁</span>
+                        <span>Checklist de un día (incluido)</span>
+                    </div>
+                    <div class="category-items">
+                        <button class="reset-btn" style="font-size:14px;padding:6px 12px;margin-bottom:8px;" onclick="copyDayChecklistToTwoDays()">Copiar checks de un día aquí</button>
+                        <div id="day-checklist-copy"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
+    // Manejo de pestañas y checklist por tipo de viaje
     const CHECKLIST_STORAGE_KEY = 'parasenderosChecklistState';
+    const CHECKLIST_STORAGE_KEY_2 = 'parasenderosChecklistState2';
+
+    function showTab(tab) {
+        document.getElementById('tab-dia').classList.remove('active');
+        document.getElementById('tab-dosdias').classList.remove('active');
+        document.getElementById('checklist-dia').classList.remove('active');
+        document.getElementById('checklist-dosdias').classList.remove('active');
+        if (tab === 'dia') {
+            document.getElementById('tab-dia').classList.add('active');
+            document.getElementById('checklist-dia').classList.add('active');
+            updateProgress('dia');
+        } else {
+            document.getElementById('tab-dosdias').classList.add('active');
+            document.getElementById('checklist-dosdias').classList.add('active');
+            updateProgress('dosdias');
+        }
+    }
 
     // Guardar el estado del checklist en localStorage
-    function saveChecklistState() {
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    function saveChecklistState(tab) {
+        let selector = tab === 'dosdias' ? '#checklist-dosdias input[type="checkbox"]' : '#checklist-dia input[type="checkbox"]';
+        const checkboxes = document.querySelectorAll(selector);
         const state = {};
         checkboxes.forEach(cb => {
             state[cb.id] = cb.checked;
         });
-        localStorage.setItem(CHECKLIST_STORAGE_KEY, JSON.stringify(state));
+        localStorage.setItem(tab === 'dosdias' ? CHECKLIST_STORAGE_KEY_2 : CHECKLIST_STORAGE_KEY, JSON.stringify(state));
     }
 
     // Cargar el estado del checklist desde localStorage
-    function loadChecklistState() {
-        const savedState = localStorage.getItem(CHECKLIST_STORAGE_KEY);
+    function loadChecklistState(tab) {
+        const key = tab === 'dosdias' ? CHECKLIST_STORAGE_KEY_2 : CHECKLIST_STORAGE_KEY;
+        const savedState = localStorage.getItem(key);
         if (savedState) {
             const state = JSON.parse(savedState);
             Object.keys(state).forEach(id => {
@@ -538,40 +710,66 @@
     }
 
     // Progreso del checklist
-    function updateProgress() {
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+    function updateProgress(tab) {
+        tab = tab || (document.getElementById('checklist-dosdias').classList.contains('active') ? 'dosdias' : 'dia');
+        let selector = tab === 'dosdias' ? '#checklist-dosdias input[type="checkbox"]' : '#checklist-dia input[type="checkbox"]';
+        const checkboxes = document.querySelectorAll(selector);
+        const checked = Array.from(checkboxes).filter(cb => cb.checked);
         const percent = checkboxes.length > 0 ? Math.round((checked.length / checkboxes.length) * 100) : 0;
         document.getElementById('progressPercentage').textContent = percent + '%';
         document.getElementById('progressFill').style.width = percent + '%';
-        
-        // Guardar estado cada vez que se actualiza el progreso
-        saveChecklistState();
+        saveChecklistState(tab);
     }
 
     // Resetear checklist
     function resetChecklist() {
-        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        let tab = document.getElementById('checklist-dosdias').classList.contains('active') ? 'dosdias' : 'dia';
+        let selector = tab === 'dosdias' ? '#checklist-dosdias input[type="checkbox"]' : '#checklist-dia input[type="checkbox"]';
+        const checkboxes = document.querySelectorAll(selector);
         checkboxes.forEach(cb => {
             cb.checked = false;
         });
-        // Limpiar localStorage y actualizar progreso
-        localStorage.removeItem(CHECKLIST_STORAGE_KEY);
-        updateProgress();
+        localStorage.removeItem(tab === 'dosdias' ? CHECKLIST_STORAGE_KEY_2 : CHECKLIST_STORAGE_KEY);
+        updateProgress(tab);
+    }
+
+    // Copiar checks de un día a dos días
+    function copyDayChecklistToTwoDays() {
+        // Copia el estado de los checks de un día a los equivalentes de dos días (si existen)
+        const dayChecks = document.querySelectorAll('#checklist-dia input[type="checkbox"]');
+        dayChecks.forEach(cb => {
+            const cb2 = document.getElementById(cb.id);
+            if (cb2 && cb2.closest('#checklist-dosdias')) {
+                cb2.checked = cb.checked;
+            }
+        });
+        updateProgress('dosdias');
     }
 
     // Event Listeners
     document.addEventListener('DOMContentLoaded', function() {
         // Cargar estado guardado al iniciar
-        loadChecklistState();
+        loadChecklistState('dia');
+        loadChecklistState('dosdias');
 
-        // Actualizar progreso al marcar/desmarcar
-        document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-            cb.addEventListener('change', updateProgress);
+        // Listeners para checks de un día
+        document.querySelectorAll('#checklist-dia input[type="checkbox"]').forEach(cb => {
+            cb.addEventListener('change', function() { updateProgress('dia'); });
+        });
+        // Listeners para checks de dos días
+        document.querySelectorAll('#checklist-dosdias input[type="checkbox"]').forEach(cb => {
+            cb.addEventListener('change', function() { updateProgress('dosdias'); });
         });
 
-        // Actualizar la UI inicial
-        updateProgress();
+        // Clonar checklist de un día dentro de dos días (para visualización)
+        const dayChecklist = document.querySelector('#checklist-dia .checklist-grid').cloneNode(true);
+        dayChecklist.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.id = cb.id; // mantener el mismo id para sincronizar checks
+        });
+        document.getElementById('day-checklist-copy').appendChild(dayChecklist);
+
+        // Inicializar progreso
+        updateProgress('dia');
     });
     </script>
 </body>
