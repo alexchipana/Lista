@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checklist de Viaje</title>
+    <title>PARASENDEROS - Checklist de Viaje</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -65,27 +65,6 @@
             font-weight: 500;
         }
 
-        .tabs {
-            display: flex;
-            background-color: var(--muted);
-            border-radius: 12px;
-            padding: 4px;
-            margin-bottom: 24px;
-            border: 1px solid var(--border);
-        }
-
-        .tab-button {
-            flex: 1;
-            padding: 12px 20px;
-            border: none;
-            background: transparent;
-            color: var(--foreground);
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            font-family: inherit;
         }
 
         .tab-button.active {
@@ -317,13 +296,11 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Aventureros</h1>
-            <p>Checklist para Viajes en Motocicleta</p>
+            <h1>AVENTURA EN MOTO</h1>
+            <p>Checklist para ruta trail de un dia</p>
         </div>
 
         <div class="tabs">
-            <button class="tab-button active" onclick="switchTab('day-trip')">Viaje de Día</button>
-            <button class="tab-button" onclick="switchTab('multi-day')">Viaje de 2-3 Días</button>
         </div>
 
         <div class="progress-section">
@@ -340,8 +317,8 @@
             <button class="reset-btn" onclick="resetChecklist()">Reiniciar Checklist</button>
         </div>
 
-        <!-- Viaje de Día -->
-        <div id="day-trip" class="tab-content active">
+        <!-- Checklist -->
+        <div id="checklist" class="tab-content active">
             <div class="checklist-grid">
                 <div class="category">
                     <div class="category-header">
@@ -350,36 +327,36 @@
                     </div>
                     <div class="category-items">
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-tires">
-                            <label for="day-tires">Presión y estado de llantas</label>
+                            <input type="checkbox" id="tires">
+                            <label for="tires">Presión y estado de llantas</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-brakes">
-                            <label for="day-brakes">Frenos (delantero y trasero)</label>
+                            <input type="checkbox" id="brakes">
+                            <label for="brakes">Frenos (delantero y trasero)</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-lights">
-                            <label for="day-lights">Luces e intermitentes</label>
+                            <input type="checkbox" id="lights">
+                            <label for="lights">Luces e intermitentes</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-oil">
-                            <label for="day-oil">Nivel de aceite</label>
+                            <input type="checkbox" id="oil">
+                            <label for="oil">Nivel de aceite</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-chain">
-                            <label for="day-chain">Tensión y lubricación de cadena</label>
+                            <input type="checkbox" id="chain">
+                            <label for="chain">Tensión y lubricación de cadena</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-clutch">
-                            <label for="day-clutch">Juego del cable de embrague</label>
+                            <input type="checkbox" id="clutch">
+                            <label for="clutch">Juego del cable de embrague</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-coolant">
-                            <label for="day-coolant">Nivel de refrigerante</label>
+                            <input type="checkbox" id="coolant">
+                            <label for="coolant">Nivel de refrigerante</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-fuel">
-                            <label for="day-fuel">Tanque de combustible lleno</label>
+                            <input type="checkbox" id="fuel">
+                            <label for="fuel">Combustible</label>
                         </div>
                     </div>
                 </div>
@@ -391,28 +368,28 @@
                     </div>
                     <div class="category-items">
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-helmet">
-                            <label for="day-helmet">Casco</label>
+                            <input type="checkbox" id="helmet">
+                            <label for="helmet">Casco</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-jacket">
-                            <label for="day-jacket">Chaqueta con protecciones</label>
+                            <input type="checkbox" id="jacket">
+                            <label for="jacket">Chaqueta con protecciones</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-gloves">
-                            <label for="day-gloves">Guantes</label>
+                            <input type="checkbox" id="gloves">
+                            <label for="gloves">Guantes</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-pants">
-                            <label for="day-pants">Pantalones de protección</label>
+                            <input type="checkbox" id="pants">
+                            <label for="pants">Pantalones de protección</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-boots">
-                            <label for="day-boots">Botas de motociclista</label>
+                            <input type="checkbox" id="boots">
+                            <label for="boots">Botas de motociclista</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-rain-suit">
-                            <label for="day-rain-suit">Traje de lluvia</label>
+                            <input type="checkbox" id="rain-suit">
+                            <label for="rain-suit">Traje de lluvia</label>
                         </div>
                     </div>
                 </div>
@@ -424,28 +401,28 @@
                     </div>
                     <div class="category-items">
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-toolkit">
-                            <label for="day-toolkit">Kit de herramientas básico</label>
+                            <input type="checkbox" id="toolkit">
+                            <label for="toolkit">Kit de herramientas básico</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-puncture-kit">
-                            <label for="day-puncture-kit">Kit de reparación de pinchazos</label>
+                            <input type="checkbox" id="puncture-kit">
+                            <label for="puncture-kit">Kit de reparación de pinchazos</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-compressor">
-                            <label for="day-compressor">Mini compresor de aire</label>
+                            <input type="checkbox" id="compressor">
+                            <label for="compressor">Mini compresor de aire</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-zip-ties">
-                            <label for="day-zip-ties">Cinchos de plástico (bridas)</label>
+                            <input type="checkbox" id="zip-ties">
+                            <label for="zip-ties">Cinchos de plástico (bridas)</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-tape">
-                            <label for="day-tape">Cinta adhesiva</label>
+                            <input type="checkbox" id="tape">
+                            <label for="tape">Cinta adhesiva</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-chain-lube">
-                            <label for="day-chain-lube">Lubricante de cadena</label>
+                            <input type="checkbox" id="chain-lube">
+                            <label for="chain-lube">Lubricante de cadena</label>
                         </div>
                     </div>
                 </div>
@@ -456,21 +433,18 @@
                         <span>Documentación</span>
                     </div>
                     <div class="category-items">
+                        
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-license">
-                            <label for="day-license">Licencia de conducir</label>
+                            <input type="checkbox" id="soat">
+                            <label for="soat">SOAT vigente</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-soat">
-                            <label for="day-soat">SOAT vigente</label>
+                            <input type="checkbox" id="id-card">
+                            <label for="id-card">Cédula de Identidad</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-id-card">
-                            <label for="day-id-card">Cédula de Identidad</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="day-emergency-contacts">
-                            <label for="day-emergency-contacts">Contactos de emergencia</label>
+                            <input type="checkbox" id="emergency-contacts">
+                            <label for="emergency-contacts">Contactos de emergencia</label>
                         </div>
                     </div>
                 </div>
@@ -482,20 +456,20 @@
                     </div>
                     <div class="category-items">
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-gps">
-                            <label for="day-gps">GPS o soporte para teléfono</label>
+                            <input type="checkbox" id="gps">
+                            <label for="gps">GPS o soporte para teléfono</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-phone">
-                            <label for="day-phone">Teléfono móvil cargado</label>
+                            <input type="checkbox" id="phone">
+                            <label for="phone">Teléfono móvil cargado</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-power-bank">
-                            <label for="day-power-bank">Batería externa (Power Bank)</label>
+                            <input type="checkbox" id="power-bank">
+                            <label for="power-bank">Batería externa (Power Bank)</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-charging-cables">
-                            <label for="day-charging-cables">Cables de carga</label>
+                            <input type="checkbox" id="charging-cables">
+                            <label for="charging-cables">Cables de carga</label>
                         </div>
                     </div>
                 </div>
@@ -507,111 +481,48 @@
                     </div>
                     <div class="category-items">
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-water">
-                            <label for="day-water">Agua o sistema de hidratación</label>
+                            <input type="checkbox" id="water">
+                            <label for="water">Agua o sistema de hidratación</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-snacks">
-                            <label for="day-snacks">Snacks / barras energéticas</label>
+                            <input type="checkbox" id="snacks">
+                            <label for="snacks">Snacks / barras energéticas</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-first-aid">
-                            <label for="day-first-aid">Botiquín de primeros auxilios</label>
+                            <input type="checkbox" id="first-aid">
+                            <label for="first-aid">Botiquín de primeros auxilios</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-sunscreen">
-                            <label for="day-sunscreen">Protector solar</label>
+                            <input type="checkbox" id="sunscreen">
+                            <label for="sunscreen">Protector solar</label>
                         </div>
                         <div class="checklist-item">
-                            <input type="checkbox" id="day-cash">
-                            <label for="day-cash">Dinero en efectivo</label>
+                            <input type="checkbox" id="cash">
+                            <label for="cash">Dinero en efectivo</label>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Viaje de 2-3 Días -->
-        <div id="multi-day" class="tab-content">
-            <div class="checklist-grid">
-                <div class="category">
-                    <div class="category-header">
-                        <span class="category-icon">🔧</span>
-                        <span>Inspección Pre-viaje (2-3 días)</span>
-                    </div>
-                    <div class="category-items">
-                        <div class="checklist-item">
-                            <input type="checkbox" id="multi-tires">
-                            <label for="multi-tires">Presión y estado de llantas</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="multi-brakes">
-                            <label for="multi-brakes">Frenos (delantero y trasero)</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="multi-lights">
-                            <label for="multi-lights">Luces e intermitentes</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="multi-oil">
-                            <label for="multi-oil">Nivel de aceite</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="multi-chain">
-                            <label for="multi-chain">Tensión y lubricación de cadena</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="multi-clutch">
-                            <label for="multi-clutch">Juego del cable de embrague</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="multi-coolant">
-                            <label for="multi-coolant">Nivel de refrigerante</label>
-                        </div>
-                        <div class="checklist-item">
-                            <input type="checkbox" id="multi-fuel">
-                            <label for="multi-fuel">Tanque de combustible lleno</label>
-                        </div>
-                    </div>
-                </div>
-                <!-- Puedes agregar más categorías y elementos aquí para el viaje de 2-3 días -->
             </div>
         </div>
 
         <div class="footer">
-        Viaja seguro, viaja preparado.
+            Viaja seguro, viaja preparado.
         </div>
     </div>
 
     <script>
-    // Lógica de tabs
-    function switchTab(tabId) {
-        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-        if(tabId === 'day-trip') {
-            document.querySelector('.tab-button[onclick*="day-trip"]').classList.add('active');
-            document.getElementById('day-trip').classList.add('active');
-        } else {
-            document.querySelector('.tab-button[onclick*="multi-day"]').classList.add('active');
-            document.getElementById('multi-day').classList.add('active');
-        }
-        updateProgress();
-    }
-
     // Progreso del checklist
     function updateProgress() {
-        let activeTab = document.querySelector('.tab-content.active');
-        let checkboxes = activeTab.querySelectorAll('input[type="checkbox"]');
-        let checked = activeTab.querySelectorAll('input[type="checkbox"]:checked');
-        let percent = checkboxes.length ? Math.round((checked.length / checkboxes.length) * 100) : 0;
+        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        let checked = document.querySelectorAll('input[type="checkbox"]:checked');
+        let percent = checkboxes.length > 0 ? Math.round((checked.length / checkboxes.length) * 100) : 0;
         document.getElementById('progressPercentage').textContent = percent + '%';
         document.getElementById('progressFill').style.width = percent + '%';
     }
 
     // Resetear checklist
     function resetChecklist() {
-        let activeTab = document.querySelector('.tab-content.active');
-        let checkboxes = activeTab.querySelectorAll('input[type="checkbox"]');
+        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
         checkboxes.forEach(cb => cb.checked = false);
         updateProgress();
     }
