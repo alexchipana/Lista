@@ -511,27 +511,66 @@
     </div>
 
     <script>
+    const CHECKLIST_STORAGE_KEY = 'parasenderosChecklistState';
+
+    // Guardar el estado del checklist en localStorage
+    function saveChecklistState() {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const state = {};
+        checkboxes.forEach(cb => {
+            state[cb.id] = cb.checked;
+        });
+        localStorage.setItem(CHECKLIST_STORAGE_KEY, JSON.stringify(state));
+    }
+
+    // Cargar el estado del checklist desde localStorage
+    function loadChecklistState() {
+        const savedState = localStorage.getItem(CHECKLIST_STORAGE_KEY);
+        if (savedState) {
+            const state = JSON.parse(savedState);
+            Object.keys(state).forEach(id => {
+                const checkbox = document.getElementById(id);
+                if (checkbox) {
+                    checkbox.checked = state[id];
+                }
+            });
+        }
+    }
+
     // Progreso del checklist
     function updateProgress() {
-        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        let checked = document.querySelectorAll('input[type="checkbox"]:checked');
-        let percent = checkboxes.length > 0 ? Math.round((checked.length / checkboxes.length) * 100) : 0;
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+        const percent = checkboxes.length > 0 ? Math.round((checked.length / checkboxes.length) * 100) : 0;
         document.getElementById('progressPercentage').textContent = percent + '%';
         document.getElementById('progressFill').style.width = percent + '%';
+        
+        // Guardar estado cada vez que se actualiza el progreso
+        saveChecklistState();
     }
 
     // Resetear checklist
     function resetChecklist() {
-        let checkboxes = document.querySelectorAll('input[type="checkbox"]');
-        checkboxes.forEach(cb => cb.checked = false);
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(cb => {
+            cb.checked = false;
+        });
+        // Limpiar localStorage y actualizar progreso
+        localStorage.removeItem(CHECKLIST_STORAGE_KEY);
         updateProgress();
     }
 
-    // Actualizar progreso al marcar/desmarcar
+    // Event Listeners
     document.addEventListener('DOMContentLoaded', function() {
+        // Cargar estado guardado al iniciar
+        loadChecklistState();
+
+        // Actualizar progreso al marcar/desmarcar
         document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
             cb.addEventListener('change', updateProgress);
         });
+
+        // Actualizar la UI inicial
         updateProgress();
     });
     </script>
