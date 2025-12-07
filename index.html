@@ -8,22 +8,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #991b1b;
+            /* Sober/Minimalist (Zinc-like) */
+            --primary: #18181b;
+            /* Zinc 900 */
             --secondary: #ffffff;
-            --accent: #dc2626;
-            --background: #ffffff;
-            --foreground: #111111;
-            --muted: #f4f4f5;
-            --border: #e5e7eb;
-            --highlight: #fef2f2;
+            --accent: #52525b;
+            /* Zinc 600 */
+            --background: #fafafa;
+            /* Zinc 50 */
+            --foreground: #27272a;
+            /* Zinc 800 */
+            --muted: #e4e4e7;
+            /* Zinc 200 */
+            --border: #d4d4d8;
+            /* Zinc 300 */
+            --highlight: #f4f4f5;
+            /* Zinc 100 */
             --danger: #ef4444;
             --success: #10b981;
             --info: #3b82f6;
 
-            /* Multi-day Theme */
-            --primary-multiday: #14532d;
-            --accent-multiday: #16a34a;
-            --highlight-multiday: #f0fdf4;
+            /* Multi-day Theme (Subtle variation) */
+            --primary-multiday: #18181b;
+            --accent-multiday: #3f3f46;
+            /* Zinc 700 */
+            --highlight-multiday: #f4f4f5;
         }
 
         * {
@@ -50,24 +59,23 @@
         .header {
             text-align: center;
             background-color: var(--secondary);
-            padding: 48px 32px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            margin-bottom: 24px;
+            padding: 24px 16px;
+            border-radius: 8px;
+            box-shadow: none;
+            margin-bottom: 20px;
             border: 1px solid var(--border);
         }
 
         .header h1 {
-            font-size: 36px;
-            font-weight: 700;
+            font-size: 24px;
+            font-weight: 600;
             color: var(--primary);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             letter-spacing: -0.5px;
         }
 
         .header p {
-
-            font-size: 18px;
+            font-size: 14px;
             color: var(--accent);
             font-weight: 500;
         }
@@ -80,24 +88,25 @@
         }
 
         .tab-button {
-            background: var(--muted);
-            color: var(--primary);
-            border: 1px solid var(--border);
-            border-radius: 8px 8px 0 0;
-            padding: 12px 32px;
-            font-size: 18px;
-            font-weight: 600;
+            background: transparent;
+            color: var(--accent);
+            border: none;
+            border-bottom: 2px solid transparent;
+            border-radius: 0;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
-            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            transition: all 0.2s;
             outline: none;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+            box-shadow: none;
         }
 
         .tab-button.active {
-            background: var(--secondary);
-            color: var(--accent);
-            border-bottom: 2px solid var(--accent);
-            box-shadow: 0 4px 8px rgba(153, 27, 27, 0.15);
+            background: transparent;
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            box-shadow: none;
             z-index: 2;
         }
 
@@ -131,24 +140,24 @@
         }
 
         .progress-title {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 600;
             color: var(--primary);
         }
 
         .progress-percentage {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--accent);
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--primary);
         }
 
         .progress-bar {
             width: 100%;
-            height: 12px;
+            height: 6px;
             background-color: var(--muted);
-            border-radius: 12px;
+            border-radius: 6px;
             overflow: hidden;
-            border: 1px solid var(--border);
+            border: none;
         }
 
         .progress-fill {
@@ -186,8 +195,8 @@
 
         .checklist-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
         }
 
         .category {
@@ -205,31 +214,33 @@
         }
 
         .category-header {
-            background-color: var(--primary);
-            color: var(--secondary);
-            padding: 24px;
-            font-size: 18px;
+            background-color: var(--highlight);
+            color: var(--primary);
+            padding: 12px 16px;
+            font-size: 15px;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 8px;
+            border-bottom: 1px solid var(--border);
         }
 
         .category-icon {
-            font-size: 20px;
-            opacity: 0.9;
+            font-size: 18px;
+            opacity: 0.7;
+            filter: grayscale(100%);
         }
 
         .category-items {
-            padding: 24px;
+            padding: 12px 16px;
         }
 
         .checklist-item {
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 4px;
+            align-items: center;
+            margin-bottom: 2px;
             transition: all 0.2s ease;
-            padding: 4px 8px;
+            padding: 2px 4px;
             border-radius: 4px;
         }
 
@@ -253,7 +264,7 @@
 
         .checklist-item label {
             flex: 1;
-            font-size: 16px;
+            font-size: 14px;
             cursor: pointer;
             color: var(--foreground);
             font-weight: 400;
@@ -262,8 +273,8 @@
 
         .checklist-item input[type="checkbox"]:checked+label {
             text-decoration: line-through;
-            opacity: 0.6;
-            color: var(--success);
+            opacity: 0.5;
+            color: var(--accent);
         }
 
         .footer {
